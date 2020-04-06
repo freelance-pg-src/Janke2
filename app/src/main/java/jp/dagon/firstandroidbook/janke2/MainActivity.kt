@@ -8,6 +8,7 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,14 +27,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * ボタンを押した時に実行する
+     * 結果画面に遷移する
      */
     fun onJankenButtonTapped(view: View?) {
-        // Intentクラスのコンストラクタ(context:呼び出し元のインスタンス class:呼び出したいアクティビティのクラス)
-        val intent = Intent(this, ResultActivity::class.java)
-        // インテントにデータを格納(name:追加したい情報キー value:追加する値)
-        intent.putExtra("MY_HAND", view?.id)
-        // アクティビティを起動する
-        startActivity(intent)
+        startActivity<ResultActivity>("MY_HAND" to view?.id)
     }
 }
